@@ -34,6 +34,10 @@ Extendability and Abstraction
 Adding new features (e.g., levels, hints) can be achieved by extending ViewModel functionalities without altering core logic extensively.
 UI changes are isolated within the ViewController, ensuring flexibility in design updates.
 Enhancements and Future Considerations
+# Screenshots
+<img src="https://github.com/sraj2794/Logo-Quiz-App/assets/41502704/8872b1d9-3ad6-479e-bb43-da8ea06e1e23" width="300">
+<img src="https://github.com/sraj2794/Logo-Quiz-App/assets/41502704/c679b9da-7937-4655-a7d6-fbe4e1a7f96f" width="300">
+
 # Additional Features:
 Implement multiple levels with increasing difficulty.
 Introduce hints or lifelines to assist players.
