@@ -76,30 +76,19 @@ final class LogoViewModel {
         delegate?.didUpdateScore(score)
     }
     
-    func generateExtraLetters(for name: String, count: Int) -> [Character] {
+    func generateExtraLetters(for name: Set<Character>, count: Int) -> [Character] {
         let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         var extraLetters = [Character]()
-        
-        // Create a set of unique letters from the name
-        let uniqueLetters = Set(name.uppercased())
-        // Subtract the letters from the name from the alphabet
-        let availableLetters = Set(alphabet).subtracting(uniqueLetters)
-        
-        // Ensure we have enough unique letters
-        guard availableLetters.count >= count else {
-            fatalError("Not enough unique letters to generate extra letters")
-        }
-        
-        var availableLettersArray = Array(availableLetters)
-        
+        var availableLetters = Set(alphabet).subtracting(name)
         for _ in 0..<count {
-            let randomIndex = Int.random(in: 0..<availableLettersArray.count)
-            let letter = availableLettersArray.remove(at: randomIndex)
-            extraLetters.append(letter)
+            if let letter = availableLetters.randomElement() {
+                print("letter random: \(letter)")
+                extraLetters.append(letter)
+                availableLetters.remove(letter)
+            }
         }
         
         return extraLetters
     }
-
 
 }

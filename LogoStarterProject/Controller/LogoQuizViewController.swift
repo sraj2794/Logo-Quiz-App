@@ -46,12 +46,10 @@ class LogoQuizViewController: UIViewController {
     private func setupJumbledLetters(for name: String) {
         zumbledLetterStackView1.arrangedSubviews.forEach { $0.removeFromSuperview() }
         zumbledLetterStackView2.arrangedSubviews.forEach { $0.removeFromSuperview() }
-        
-        // Generate unique extra letters
-        let extraLetters = viewModel.generateExtraLetters(for: name, count: 18 - name.count)
-        // Combine and shuffle the name letters with extra letters
-        let letters = Array((name.uppercased() + String(extraLetters)).shuffled())
-        
+        let nameSet: Set<Character> = Set(name.shuffled())
+        var letters = Array(viewModel.generateExtraLetters(for: nameSet, count: 18 - nameSet.count))
+        letters += nameSet
+        letters.shuffle()
         for (index, letter) in letters.enumerated() {
             let button = UIButton(type: .system)
             button.setTitle(String(letter), for: .normal)
@@ -70,7 +68,7 @@ class LogoQuizViewController: UIViewController {
             }
         }
     }
-
+    
     
     @objc private func letterButtonTapped(_ sender: UIButton) {
         guard let letter = sender.title(for: .normal),
